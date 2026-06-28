@@ -27,6 +27,18 @@ jobs:
           python3 -m pip install --upgrade pip
           pip3 install requests beautifulsoup4 python-dotenv
       
+      - name: Diagnose secrets (temporary)
+        env:
+          PA_USERNAME_1: ${{ secrets.PA_USERNAME_1 }}
+          PA_PASSWORD_1: ${{ secrets.PA_PASSWORD_1 }}
+          PA_USERNAME_2: ${{ secrets.PA_USERNAME_2 }}
+          PA_PASSWORD_2: ${{ secrets.PA_PASSWORD_2 }}
+        run: |
+          echo "PA_USERNAME_1 length: ${#PA_USERNAME_1}"
+          echo "PA_PASSWORD_1 length: ${#PA_PASSWORD_1}"
+          echo "PA_USERNAME_2 length: ${#PA_USERNAME_2}"
+          echo "PA_PASSWORD_2 length: ${#PA_PASSWORD_2}"
+
       - name: Run renewal script
         env:
           PA_USERNAME_1: ${{ secrets.PA_USERNAME_1 }}
